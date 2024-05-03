@@ -1,0 +1,3 @@
+I will pass you code and I want you to keep the code the same, but fully document the code and explain what it does.
+Document functions, classes, and the file itself.
+Return the code in a code block that can be copy and pasted easily surrounded by the following characters for safe parsing: %"%"%
