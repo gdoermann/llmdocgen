@@ -1,0 +1,15 @@
+[flake8]
+exclude =
+    # No need to include python bytecode
+    __pycache__,
+    # No need to traverse our git directory
+    .git,
+    # Testing directories
+    .tox,
+    .pytest_cache,
+    tests,
+    dist,
+    # Old code
+    archive
+max-line-length = 120
+max-complexity = 10
