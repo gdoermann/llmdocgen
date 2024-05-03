@@ -7,7 +7,7 @@ import pathlib
 from . import enrich
 
 
-def inline_document_file(file_path: pathlib.Path, save=True, new_file: pathlib.Path = None, **kwargs):
+def inline_document_file(file_path: pathlib.Path, save=False, new_file: pathlib.Path = None, **kwargs):
     """
     Create inline documentation for a file
     :param file_path: The path to the file to document

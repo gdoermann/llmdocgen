@@ -9,7 +9,7 @@ import pathlib
 import attrdict
 import environs
 
-ENV_PATH = os.environ.get('llmdocgen_ENV_PATH', '~/.llmdocgen')
+ENV_PATH = os.environ.get('LLMDOCGEN_ENV_PATH', '~/.llmdocgen')
 ENV_PATH = pathlib.Path(ENV_PATH).expanduser()
 
 env = environs.Env()
@@ -120,8 +120,8 @@ DEFAULT_EXTENSIONS = [
 ]
 
 # You can add additional file extensions to document here
-EXTRA_EXTENSIONS = env.list('llmdocgen_EXTRA_EXTENSIONS', [])
+EXTRA_EXTENSIONS = env.list('LLMDOCGEN_EXTRA_EXTENSIONS', [])
 
 # You can override the default extensions by setting the SUPERDOC_EXTENSIONS environment variable
 # If you do not set this, we will use the default extensions + any extra extensions you have added
-EXTENSIONS = env.list('llmdocgen_EXTENSIONS', DEFAULT_EXTENSIONS + EXTRA_EXTENSIONS)
+EXTENSIONS = env.list('LLMDOCGEN_EXTENSIONS', DEFAULT_EXTENSIONS + EXTRA_EXTENSIONS)

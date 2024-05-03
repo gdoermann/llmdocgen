@@ -22,22 +22,29 @@ pip install llmdocgen
 
 ## Setup
 
+You can use the default environment file path (`~/.llmdocgen`) or specify a custom environment file path
+by setting the `LLMDOCGEN_ENV_PATH` environment variable.
+
+
 `llmdocgen` requires a few environment variables to be set in order to authenticate with the LLM provider. The easiest
-way to set these variables is to create a ~/.llmdocgen file with the following variables:
+way to set these variables is to create your environment file with the following variables:
 
 ```bash
 # Required for LiteLLM
-LITELLM_MODEL=claude-3-opus-20240229  # or another supported model
-LITELLM_API_BASE=https://api.litellm.ai
 
-# Optional LiteLLM settings
-LITELLM_TIMEOUT=60
-LITELLM_TEMPERATURE=0
-# See settings.py for additional optional variables
+# For Anthropic
+LITELLM_MODEL=claude-3-opus-20240229  # or another supported model
+ANTHROPIC_API_KEY=your_api_key
+
+# For OpenAI
+OPENAI_API_KEY=your_api_key
+LITELLM_MODEL=gpt-4-turbo  # or another supported model
 
 # llmdocgen settings
 PROMPT_FILE=default_prompt.txt
 ESCAPE_CHARACTERS=%"%"%"
+
+# See settings.py for additional optional variables
 ```
 
 See the LiteLLM docs for more details on authenticating.
@@ -50,10 +57,34 @@ There are two main ways to use llmdocgen:
 
 ```python
 from llmdocgen import enrich
+import pathlib
 
-completion = enrich.get_file_completion(file_path)
+file_path = pathlib.Path("path/to/file.py")
+completion = enrich.parsed_file_completion(file_path)
 print(completion)
 ```
+
+To run and save completion to the original file:
+```python
+from llmdocgen import executor
+import pathlib
+
+file_path = pathlib.Path("path/to/file.py")
+executor.inline_document_file(file_path, save=True)
+
+```
+
+To run and save to a different file:
+```python
+from llmdocgen import executor
+import pathlib
+
+original_file_path = pathlib.Path("path/to/file.py")
+new_file_path = pathlib.Path("path/to/new_file.py")
+executor.inline_document_file(original_file_path, save=True, new_file_path=new_file_path)
+
+```
+
 
 This will print out the code from file_path with documentation comments added.
 
@@ -72,8 +103,8 @@ This will process all supported files in /path/to/directory. Pass --recursive to
 ### Supported File Types
 
 By default, llmdocgen supports a wide variety of file types (see settings.DEFAULT_EXTENSIONS). You can add additional
-file types by setting the llmdocgen_EXTRA_EXTENSIONS environment variable to a comma-separated list of extensions.
-To override the default list entirely, set the llmdocgen_EXTENSIONS environment variable.
+file types by setting the LLMDOCGEN_EXTRA_EXTENSIONS environment variable to a comma-separated list of extensions.
+To override the default list entirely, set the LLMDOCGEN_EXTENSIONS environment variable.
 
 ### Prompts
 
