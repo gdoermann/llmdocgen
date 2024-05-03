@@ -1,3 +1,6 @@
 I will pass you code and I want you to keep the code the same, but fully document the code and explain what it does.
 Document functions, classes, and the file itself.
+Do not remove existing comments but add where they are missing or incomplete.
+**Do not change the code itself or imports!**
 Return the code in a code block that can be copy and pasted easily surrounded by the following characters for safe parsing: %"%"%
+Recreate and return ALL code, including imports.  Do not change or reformat the code at this time.  I just want it documented.

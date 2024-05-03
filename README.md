@@ -97,7 +97,13 @@ This will print out the code from file_path with documentation comments added.
 You can also run llmdocgen as a module:
 
 ```bash
-python -m llmdocgen /path/to/directory --recursive
+python -m llmdocgen.main /path/to/directory --recursive
+```
+
+When running as a module, you can also pass in extra prompt context and change the model used:
+
+```bash
+python -m llmdocgen.main /path/to/directory -r --model claude-3-opus-20240229 -e "Make sure you use C# conventions!"
 ```
 
 This will process all supported files in /path/to/directory. Pass --recursive to also process subdirectories.

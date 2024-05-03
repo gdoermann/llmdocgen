@@ -125,3 +125,5 @@ EXTRA_EXTENSIONS = env.list('LLMDOCGEN_EXTRA_EXTENSIONS', [])
 # You can override the default extensions by setting the SUPERDOC_EXTENSIONS environment variable
 # If you do not set this, we will use the default extensions + any extra extensions you have added
 EXTENSIONS = env.list('LLMDOCGEN_EXTENSIONS', DEFAULT_EXTENSIONS + EXTRA_EXTENSIONS)
+
+SAVE_BY_DEFAULT = env.bool('LLMDOCGEN_SAVE_BY_DEFAULT', False)

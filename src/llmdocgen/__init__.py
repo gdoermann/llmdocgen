@@ -2,7 +2,7 @@
 Library for reading and writing trigger files.
 """
 
-__version__ = "0.1.1"
+__version__ = "0.1.2"
 
 
 def get_version():
@@ -11,10 +11,3 @@ def get_version():
     :return: Full Version String
     """
     return __version__
-
-
-if __name__ == '__main__':
-    # Module execution support
-    from . import executor
-
-    executor.main()
