@@ -4,6 +4,10 @@
 input, sends them to an LLM to generate documentation comments, and returns the code with the generated documentation
 added.
 
+LLMDocGen will not just document python files but also other languages like JavaScript, Java, C++, etc. 
+It can be used as a library or run as a command line tool.
+
+
 ## Features
 
 - Automatically documents code using LLMs
@@ -119,6 +123,23 @@ As mentioned above, `llmdocgen` uses LiteLLM to integrate with LLM providers. Al
 by setting the appropriate environment variables.
 See settings.LITELLM for the full list of supported settings. These map directly to arguments to LiteLLM's
 litellm.completion() function.
+
+
+### File Types
+
+`llmdocgen` supports a wide variety of file types out of the box. The supported file types are defined in the
+`settings.DEFAULT_EXTENSIONS` dictionary. Each key is a file extension, and each value is a list of languages that
+llmdocgen will use to generate documentation for that file type.
+
+If you would like to include additional file types, you can set the `LLMDOCGEN_EXTRA_EXTENSIONS` environment variable to a
+comma-separated list of file extensions. 
+
+If you want to override the default list entirely, you can set the `LLMDOCGEN_EXTENSIONS` environment variable to a
+comma-separated list of file extensions.  This would allow you to only document specific file types.
+
+All of these can be set in your environment file (see the Setup section above) so you do not have to set them every time
+you run `llmdocgen`.
+
 
 ## Contributing
 
