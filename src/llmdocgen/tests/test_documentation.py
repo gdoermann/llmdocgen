@@ -1,8 +1,8 @@
 import pathlib
 import unittest
+from llmdocgen import enrich, settings, executor
 
 _dir = pathlib.Path(__file__).resolve().parent
-from llmdocgen import enrich, settings, executor
 
 
 class TestDocumentation(unittest.TestCase):
