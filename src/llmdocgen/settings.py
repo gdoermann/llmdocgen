@@ -48,6 +48,12 @@ PROMPT_FILE = pathlib.Path(PROMPT_FILE_PATH)
 assert PROMPT_FILE.exists(), f'Prompt file does not exist: {PROMPT_FILE}'
 PROMPT = PROMPT_FILE.read_text()
 
+HEADER_FILE_PATH = env.path('HEADER_FILE', _file.parent / 'default_header_prompt.txt')
+HEADER_FILE = pathlib.Path(HEADER_FILE_PATH)
+assert HEADER_FILE.exists(), f'Header file does not exist: {HEADER_FILE}'
+HEADER_PROMPT = HEADER_FILE.read_text()
+
+
 # These should be specified in your prompt and will be used to parse the output.
 # They are used to determine the start and end of the completion.
 # Do not use character sequences that appear in your code as we look for these

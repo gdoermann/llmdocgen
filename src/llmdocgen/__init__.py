@@ -2,7 +2,7 @@
 Library for reading and writing trigger files.
 """
 
-__version__ = "0.1.2"
+__version__ = "0.1.3"
 
 
 def get_version():

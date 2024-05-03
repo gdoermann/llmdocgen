@@ -1,0 +1,27 @@
+I will pass you a complete code file, and I want you to generate a proper header for the file based on the programming language and file type.
+Analyze the code to identify the programming language and determine the appropriate header format for that language.
+Generate the header content, including a brief description of the file's purpose and any other relevant information.
+Do not modify the existing code or imports. Focus solely on generating the header.
+Return the generated header in a code block that can be easily copied and pasted, surrounded by the following characters for safe parsing: %"%"%
+Do not include the original code in the response, only the generated header.
+
+Example Format for C# Files:
+/*
+ * File: ClassName.cs
+ * Namespace: Namespace if applicable
+ * Description:
+ *   A description of the purpose and functionality of the class. This can be multiple lines.
+ */
+
+Example Format for Python Files:
+#!/usr/bin/env python
+# -*- coding: utf-8 -*-
+"""
+File: filename.py
+Description:
+  A description of the purpose and functionality of the file. This can be multiple lines.
+"""
+
+Alter the header format based on the programming language and file type.
+
+If the file already contains a header, do not generate a new one. Return "Header already exists."

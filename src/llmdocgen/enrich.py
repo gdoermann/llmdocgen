@@ -6,6 +6,7 @@ This handles the connection and a backup account in case we run out of requests.
 import logging
 import pathlib
 import re
+from typing import Optional
 
 from litellm import completion
 
@@ -42,10 +43,11 @@ def get_completion(messages, **kwargs):
     return response.choices[0].message.content
 
 
-def get_file_completion(file_path: pathlib.Path, **kwargs):
+def get_file_completion(file_path: pathlib.Path, prompt: Optional[str] = None, **kwargs):
     """
     For a file on disk, resolve the prompt, open the file, and get a completion.
     :param file_path: The path to the file containing the code to document
+    :param prompt: The prompt to use
     :return: The completion
     """
     # Check that the file_path extension is in the list of supported extensions
@@ -54,7 +56,8 @@ def get_file_completion(file_path: pathlib.Path, **kwargs):
         logger.debug(f'Skipping unsupported file type: {file_path}')
         return None
     code = file_path.read_text()
-    prompt = settings.PROMPT
+    prompt = prompt or settings.PROMPT
+    prompt = f'{prompt}\nFile: {file_path.name}\n'
     messages = [
         {"role": "system", "content": prompt},
         {"role": "user", "content": code},
@@ -72,8 +75,8 @@ def parsed_file_completion(file_path: pathlib.Path, **kwargs):
     :param file_path: The path to the file containing the code to document
     :return: The completion
     """
-    completion = get_file_completion(file_path, **kwargs)
-    cleaned = completion.split(settings.ESCAPE_CHARACTERS)[1]
+    _completion = get_file_completion(file_path, **kwargs)
+    cleaned = _completion.split(settings.ESCAPE_CHARACTERS)[1]
     if CODE_BLOCK_START_REGEX.match(cleaned):
         # Replace the first code block with the completion
         cleaned = CODE_BLOCK_START_REGEX.sub('', cleaned, count=1).rstrip('```')

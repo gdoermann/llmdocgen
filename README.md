@@ -106,6 +106,22 @@ When running as a module, you can also pass in extra prompt context and change t
 python -m llmdocgen.main /path/to/directory -r --model claude-3-opus-20240229 -e "Make sure you use C# conventions!"
 ```
 
+### Safe Mode
+Sometime LLMs generate crazy code, overdocument, or are not consistent in their documentation. 
+If you would like to generate only a header comment (if it does not exist),
+you can run llmdocgen in safe mode:
+
+```bash
+python -m llmdocgen.main --save -m bedrock/anthropic.claude-3-sonnet-20240229-v1:0 --header -r --progress-bar src/
+```
+
+The `--header` will only generate a header comment if it does not exist.
+
+### Progress Bar
+If you do not specify `--progress-bar`, llmdocgen will show a tqdm progress bar but it will not show the percentage.
+If you specify `--progress-bar`, llmdocgen will show a progress bar with the percentage by resolving
+ALL files that it will process before starting the generation process. 
+
 This will process all supported files in /path/to/directory. Pass --recursive to also process subdirectories.
 
 ## Configuration
